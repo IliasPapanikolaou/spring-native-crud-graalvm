@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-native-crud-graalvm
+spec:
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: spring-native-crud-graalvm
+  template:
+    metadata:
+      labels:
+        app: spring-native-crud-graalvm
+    spec:
+      containers:
+        - name: hello-world
+          image: iliaspap/spring-native-crud-graalvm:latest
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-native-crud-graalvm-service
+spec:
+  type: ClusterIP
+  selector:
+    app: spring-native-crud-graalvm
+  ports:
+    - port: 8080
+      targetPort: 8080
