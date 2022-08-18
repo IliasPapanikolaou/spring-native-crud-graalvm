@@ -1,7 +1,5 @@
 package com.unipi.ipap.springnativecrudgraalvm.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
@@ -24,6 +22,10 @@ public class Cart {
     public Cart() {
     }
 
+    public Cart(Customer customer) {
+        this.customer = customer;
+    }
+
     public void addItem(Item item) {
         this.items.add(item);
     }
@@ -34,6 +36,14 @@ public class Cart {
 
     public Set<Item> getItems() {
         return items;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
     }
 
     @Override

@@ -23,21 +23,24 @@ public class Customer {
     @NotNull(message = "Phone should not be empty")
     private String phone;
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Address> address;
+    private Set<Address> addressList;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private Cart cart;
 
+    // No Args Constructor
     public Customer() {
+        this.cart = new Cart(this);
     }
 
-    public Customer(String name, Integer age, String email, String phone, Set<Address> address, Cart cart) {
+    // Args Constructor
+    public Customer(String name, Integer age, String email, String phone, Set<Address> address) {
         this.name = name;
         this.age = age;
         this.email = email;
         this.phone = phone;
-        this.address = address;
-        this.cart = cart;
+        this.addressList = address;
+        this.cart = new Cart(this);
     }
 
     public String getName() {
@@ -72,20 +75,16 @@ public class Customer {
         this.phone = phone;
     }
 
-    public Set<Address> getAddress() {
-        return address;
+    public Set<Address> getAddressList() {
+        return addressList;
     }
 
-    public void setAddress(Set<Address> address) {
-        this.address = address;
+    public void setAddressList(Set<Address> address) {
+        this.addressList = address;
     }
 
     public Cart getCart() {
         return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 
     public Long getId() {
@@ -102,7 +101,7 @@ public class Customer {
         if (!Objects.equals(age, customer.age)) return false;
         if (!Objects.equals(email, customer.email)) return false;
         if (!Objects.equals(phone, customer.phone)) return false;
-        if (!Objects.equals(address, customer.address)) return false;
+        if (!Objects.equals(addressList, customer.addressList)) return false;
         return Objects.equals(cart, customer.cart);
     }
 
@@ -113,7 +112,7 @@ public class Customer {
         result = 31 * result + (age != null ? age.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (addressList != null ? addressList.hashCode() : 0);
         result = 31 * result + (cart != null ? cart.hashCode() : 0);
         return result;
     }
@@ -126,7 +125,7 @@ public class Customer {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", address=" + address +
+                ", address=" + addressList +
                 ", cart=" + cart +
                 '}';
     }
