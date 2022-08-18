@@ -1,7 +1,13 @@
 # Spring native crud with GraalVM
 
-Endpoint:
-> http://localhost:8080/customer
+Swagger:
+> http://localhost:8080/swagger-ui/index.html
+
+OpenAPI 3.0
+> http://localhost:8080/v3/api-docs/
+
+Actuator
+> http://localhost:8080/actuator/health
 
 Build image ~ size 142.87MB and startup time: 0.14 sec
 ```sh
