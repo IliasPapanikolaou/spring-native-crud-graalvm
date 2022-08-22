@@ -54,11 +54,11 @@
     <artifactId>spring-boot-starter-actuator</artifactId>
   </dependency>
   <!-- Open API Swagger -->
-  <dependency>
-    <groupId>org.springdoc</groupId>
-    <artifactId>springdoc-openapi-ui</artifactId>
-    <version>1.6.9</version>
-  </dependency>
+<!--  <dependency>-->
+<!--    <groupId>org.springdoc</groupId>-->
+<!--    <artifactId>springdoc-openapi-ui</artifactId>-->
+<!--    <version>1.6.10</version>-->
+<!--  </dependency>-->
 </dependencies>
 
 <build>
@@ -69,9 +69,10 @@
       <configuration>
         <classifier>${repackage.classifier}</classifier>
         <image>
-          <builder>paketobuildpacks/builder:0.1.241-tiny</builder>
+          <builder>paketobuildpacks/builder:tiny</builder>
           <env>
             <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+            <USE_NATIVE_IMAGE_JAVA_PLATFORM_MODULE_SYSTEM>false</USE_NATIVE_IMAGE_JAVA_PLATFORM_MODULE_SYSTEM>
           </env>
         </image>
       </configuration>
