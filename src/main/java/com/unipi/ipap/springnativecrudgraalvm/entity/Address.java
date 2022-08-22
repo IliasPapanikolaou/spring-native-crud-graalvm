@@ -17,18 +17,26 @@ public class Address {
     private String number;
     @Size(min = 2, max = 20, message = "City name should be between 2 and 20 characters")
     private String city;
+    @Size(min = 3, max = 10, message = "Postal Code should be between 3 and 10 characters")
+    private String postalCode;
+    @Size(min = 2, max = 60, message = "Country name should be between 2 and 60 characters")
+    private String country;
 
     @ManyToOne
     @JoinColumn(name = "address")
     private Customer customer;
 
+    // No Args Constructor
     public Address() {
     }
 
-    public Address(String street, String number, String city) {
+    // Args Constructor
+    public Address(String street, String number, String city, String postalCode, String country) {
         this.street = street;
         this.number = number;
         this.city = city;
+        this.postalCode = postalCode;
+        this.country = country;
     }
 
     public Long getId() {
@@ -61,6 +69,22 @@ public class Address {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     @Override

@@ -22,6 +22,10 @@ public class Cart {
     public Cart() {
     }
 
+    public Cart(Customer customer) {
+        this.customer = customer;
+    }
+
     public void addItem(Item item) {
         this.items.add(item);
     }
@@ -32,6 +36,14 @@ public class Cart {
 
     public Set<Item> getItems() {
         return items;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
     }
 
     @Override

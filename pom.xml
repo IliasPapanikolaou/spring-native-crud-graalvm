@@ -39,11 +39,6 @@
     <scope>runtime</scope>
   </dependency>
   <dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <scope>runtime</scope>
-  </dependency>
-  <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-test</artifactId>
     <scope>test</scope>
@@ -52,6 +47,17 @@
     <groupId>javax.validation</groupId>
     <artifactId>validation-api</artifactId>
     <version>2.0.1.Final</version>
+  </dependency>
+  <!-- Actuator -->
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+  </dependency>
+  <!-- Open API Swagger -->
+  <dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-ui</artifactId>
+    <version>1.6.9</version>
   </dependency>
 </dependencies>
 
@@ -132,47 +138,47 @@
   </pluginRepository>
 </pluginRepositories>
 
-<profiles>
-  <profile>
-    <id>native</id>
-    <properties>
-      <repackage.classifier>exec</repackage.classifier>
-      <native-buildtools.version>0.9.13</native-buildtools.version>
-    </properties>
-    <dependencies>
-      <dependency>
-        <groupId>org.junit.platform</groupId>
-        <artifactId>junit-platform-launcher</artifactId>
-        <scope>test</scope>
-      </dependency>
-    </dependencies>
-    <build>
-      <plugins>
-        <plugin>
-          <groupId>org.graalvm.buildtools</groupId>
-          <artifactId>native-maven-plugin</artifactId>
-          <version>${native-buildtools.version}</version>
-          <extensions>true</extensions>
-          <executions>
-            <execution>
-              <id>test-native</id>
-              <phase>test</phase>
-              <goals>
-                <goal>test</goal>
-              </goals>
-            </execution>
-            <execution>
-              <id>build-native</id>
-              <phase>package</phase>
-              <goals>
-                <goal>build</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
-    </build>
-  </profile>
-</profiles>
+  <profiles>
+    <profile>
+      <id>native</id>
+      <properties>
+        <repackage.classifier>exec</repackage.classifier>
+        <native-buildtools.version>0.9.13</native-buildtools.version>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.junit.platform</groupId>
+          <artifactId>junit-platform-launcher</artifactId>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.graalvm.buildtools</groupId>
+            <artifactId>native-maven-plugin</artifactId>
+            <version>${native-buildtools.version}</version>
+            <extensions>true</extensions>
+            <executions>
+              <execution>
+                <id>test-native</id>
+                <phase>test</phase>
+                <goals>
+                  <goal>test</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>build-native</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>build</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
