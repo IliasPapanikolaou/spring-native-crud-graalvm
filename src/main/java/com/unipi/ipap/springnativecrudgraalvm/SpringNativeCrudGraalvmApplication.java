@@ -26,7 +26,7 @@ public class SpringNativeCrudGraalvmApplication {
     }
 
     @Bean
-    @Profile("off")
+    @Profile("default")
     public ApplicationRunner init(CustomerService customerService, ItemService itemService,
                                   CartService cartService, ProductService productService) {
 
