@@ -22,7 +22,7 @@ public class Customer {
     private String email;
     @NotNull(message = "Phone should not be empty")
     private String phone;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private Set<Address> address;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")

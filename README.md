@@ -13,7 +13,26 @@ Create docker container from docker image:
 docker run -d --name crud-graalvm -p 8080:8080 spring-native-crud-graalvm:0.0.1-SNAPSHOT
 ```
 
-PowerShell for loop curl for Kubernetes testing (url changes dynamically):
-```shell
-for ($i = 0; $i -lt 10000; $i++) { curl http://127.0.0.1:46811/customer }
+#### GraalVM build error:
+Currently, paketobuildpacks/builder-tiny produces an error, use paketobuildpacks/builder:0.1.242-tiny instead.
+
+or 
+
+add the tag: USE_NATIVE_IMAGE_JAVA_PLATFORM_MODULE_SYSTEM=false
+
+```xml
+<plugin>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-maven-plugin</artifactId>
+<configuration>
+  <classifier>${repackage.classifier}</classifier>
+  <image>
+    <builder>paketobuildpacks/builder:tiny</builder>
+    <env>
+      <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+      <USE_NATIVE_IMAGE_JAVA_PLATFORM_MODULE_SYSTEM>false</USE_NATIVE_IMAGE_JAVA_PLATFORM_MODULE_SYSTEM>
+    </env>
+  </image>
+</configuration>
+</plugin>
 ```

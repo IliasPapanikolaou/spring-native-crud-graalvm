@@ -1,6 +1,6 @@
 package com.unipi.ipap.springnativecrudgraalvm.entity;
 
-import org.hibernate.annotations.GenericGenerator;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -18,6 +18,10 @@ public class Item {
     @Size(min = 5, max = 100, message = "Description should be between 5 and 255 characters")
     private String description;
     private Double price;
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
 
     // No Args Constructor
     public Item() {

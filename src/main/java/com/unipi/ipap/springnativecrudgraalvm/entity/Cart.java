@@ -1,7 +1,5 @@
 package com.unipi.ipap.springnativecrudgraalvm.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
@@ -17,7 +15,7 @@ public class Cart {
 
     @OneToOne(mappedBy = "cart")
     private Customer customer;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Item> items;
 
     // No Args Constructor
