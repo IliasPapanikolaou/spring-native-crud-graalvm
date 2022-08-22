@@ -16,6 +16,7 @@ spec:
       containers:
         - name: spring-native-crud-graalvm
           image: iliaspap/spring-native-crud-graalvm:1.0.0
+          # imagePullPolicy: Always
           resources:
             limits:
               memory: "128Mi"

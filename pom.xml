@@ -54,11 +54,17 @@
     <artifactId>spring-boot-starter-actuator</artifactId>
   </dependency>
   <!-- Open API Swagger -->
-<!--  <dependency>-->
-<!--    <groupId>org.springdoc</groupId>-->
-<!--    <artifactId>springdoc-openapi-ui</artifactId>-->
-<!--    <version>1.6.10</version>-->
-<!--  </dependency>-->
+  <dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-ui</artifactId>
+    <version>1.6.10</version>
+  </dependency>
+  <!-- Spring Native Support for Open API -->
+  <dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-native</artifactId>
+    <version>1.6.11</version>
+  </dependency>
 </dependencies>
 
 <build>
