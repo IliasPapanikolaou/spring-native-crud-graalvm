@@ -45,6 +45,7 @@ add the tag: USE_NATIVE_IMAGE_JAVA_PLATFORM_MODULE_SYSTEM=false
 
 ## Istio impementation - minikube
 
+Check if istio has an external port assigned
 ```sh
 kubectl get svc istio-ingressgateway -n istio-system
 ```
@@ -54,6 +55,16 @@ export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -
 export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].port}')
 export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].port}')
 export TCP_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="tcp")].port}')
+```
+
+Run minikube tunnel:
+```sh
+minikube tunnel
+```
+
+Don't forget to insert host to host file (linux: /etc/hosts, windows: C:\Windows\System32\drivers\etc)
+```
+127.0.0.1 spring-native-crud.com
 ```
 
 then create istio gateway and virtual service yaml: see gateway.yml file
